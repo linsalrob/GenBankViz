@@ -146,11 +146,11 @@
   }
 </script>
 
-<svelte:head><title>genbank_viewer — local-first genome viewer</title></svelte:head>
+<svelte:head><title>GenBankViz — local-first genome viewer</title></svelte:head>
 <header>
-  <div><h1>genbank_viewer</h1><p>Local-first GenBank genome viewer</p></div>
+  <div><h1>GenBankViz</h1><p>Local-first GenBank genome viewer</p></div>
   <nav class="site-links" aria-label="Project links">
-    <a href={DOCUMENTATION_URL} aria-label="genbank_viewer Documentation">Documentation</a>
+    <a href={DOCUMENTATION_URL} aria-label="GenBankViz Documentation">Documentation</a>
     <span class="privacy">Sequence data stays in your browser</span>
   </nav>
 </header>

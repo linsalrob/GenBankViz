@@ -1,6 +1,6 @@
 # Install on Chromebook
 
-genbank_viewer is **not currently an installable PWA**. It has no web-app manifest or service worker, so opening the hosted site once does not establish a reliable offline installation and no genbank_viewer entry is expected in the ChromeOS app launcher.
+GenBankViz is **not currently an installable PWA**. It has no web-app manifest or service worker, so opening the hosted site once does not establish a reliable offline installation and no GenBankViz entry is expected in the ChromeOS app launcher.
 
 The available offline option is the advanced Linux development environment (also called Crostini). Its availability, storage, and administrative permissions depend on the Chromebook model and organisation policy.
 
@@ -14,8 +14,8 @@ Prerequisites are a Chromebook that supports the Linux development environment, 
 4. Clone and build:
 
     ```bash
-    git clone https://github.com/linsalrob/genbank_viewer.git
-    cd genbank_viewer
+    git clone https://github.com/linsalrob/GenBankViz.git
+    cd GenBankViz
     rustup target add wasm32-unknown-unknown
     cargo install wasm-pack
     cd web
@@ -27,14 +27,14 @@ Prerequisites are a Chromebook that supports the Linux development environment, 
 
 ## Launch offline
 
-1. In the Linux Terminal, enter the retained `genbank_viewer/web` directory.
+1. In the Linux Terminal, enter the retained `GenBankViz/web` directory.
 2. Run:
 
     ```bash
     npm run preview -- --host 127.0.0.1
     ```
 
-3. Open <http://127.0.0.1:4173/genbank_viewer/> in Chrome.
+3. Open <http://127.0.0.1:4173/GenBankViz/> in Chrome.
 4. Choose a GenBank file to which Chrome has access.
 5. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the Linux Terminal to stop the server.
 

@@ -35,4 +35,4 @@ npm run build
 npm run preview -- --host 127.0.0.1
 ```
 
-Visit http://127.0.0.1:4173/genbank_viewer/. The GitHub Pages workflow repeats the checks, validates the generated HTML and WASM artifact, exercises the production bundle in Chromium, and deploys `web/dist` on pushes to `main`.
+Visit http://127.0.0.1:4173/GenBankViz/. The GitHub Pages workflow repeats the checks, validates the generated HTML and WASM artifact, exercises the production bundle in Chromium, and deploys `web/dist` on pushes to `main`.

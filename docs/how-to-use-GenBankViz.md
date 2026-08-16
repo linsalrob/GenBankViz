@@ -1,10 +1,10 @@
-# How to use genbank_viewer
+# How to use GenBankViz
 
-Open the [live application](https://linsalrob.github.io/genbank_viewer/) in a current Chrome, Edge, Firefox, or Safari browser. No account is needed.
+Open the [live application](https://linsalrob.github.io/GenBankViz/) in a current Chrome, Edge, Firefox, or Safari browser. No account is needed.
 
-![genbank_viewer after loading the first record of a local multi-record file](assets/viewer-loaded.png)
+![GenBankViz after loading the first record of a local multi-record file](assets/viewer-loaded.png)
 
-1. Open the genbank_viewer URL in a supported browser.
+1. Open the GenBankViz URL in a supported browser.
 2. Under **Open a local GenBank file**, choose a `.gb`, `.gbk`, `.genbank`, or `.gbff` file. Gzip forms such as `.gb.gz`, `.gbk.gz`, `.genbank.gz`, and `.gbff.gz` are also accepted and decompressed locally.
 3. Alternatively, drag the file onto the dashed loading area. The filename, size, parsing state, record count, and warning count appear.
 4. For a multi-record file, choose **Record**. The selector shows ID, length, and feature count; changing records resets the view and selection.
@@ -25,7 +25,7 @@ Open the [live application](https://linsalrob.github.io/genbank_viewer/) in a cu
 19. Coding density is the percentage of bases covered by the union of CDS parts, so overlaps are counted once.
 20. Expand parser warnings to review length mismatches, unsupported locations, malformed qualifiers, and out-of-bounds features.
 21. For malformed files, use the error’s record, line, and offending text; **Copy details** prepares debugging information. Unsupported locations are preserved, never converted to misleading bounding boxes.
-22. genbank_viewer parses and decompresses files locally. It has no upload endpoint or analytics call.
+22. GenBankViz parses and decompresses files locally. It has no upload endpoint or analytics call.
 
 Alternative nuclear tables 27, 28, and 31 include codons whose stop-versus-amino-acid meaning can depend on biological context. The viewer follows NCBI's conventional table row for bare-codon display; it does not model organism-specific termination context.
 

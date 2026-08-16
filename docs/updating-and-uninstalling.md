@@ -1,6 +1,6 @@
 # Updating and uninstalling
 
-genbank_viewer currently has no automatic update check, updater, installer database, persistent application settings, or central sequence database. Updating is manual and needs internet access on a preparation computer. GenBank files stay in their original locations and are not removed by uninstalling the application.
+GenBankViz currently has no automatic update check, updater, installer database, persistent application settings, or central sequence database. Updating is manual and needs internet access on a preparation computer. GenBank files stay in their original locations and are not removed by uninstalling the application.
 
 ## Hosted site
 
@@ -30,9 +30,9 @@ Updates are not automatic and need renewed downloads of source or dependencies. 
 
 1. In the terminal running Vite, press <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 2. Close browser tabs using its `127.0.0.1` address.
-3. Delete the retained `genbank_viewer` checkout or transferred application directory.
+3. Delete the retained `GenBankViz` checkout or transferred application directory.
 4. Remove any user-created shortcut or launcher.
-5. Optionally clear browser site data for `127.0.0.1:4173`. Be aware that another local application using the same origin could share that browser storage, although current genbank_viewer does not use it.
+5. Optionally clear browser site data for `127.0.0.1:4173`. Be aware that another local application using the same origin could share that browser storage, although current GenBankViz does not use it.
 6. Remove Git, Rust, Node.js, or npm only if they were installed solely for this build and no other software needs them. Follow each tool vendor's supported removal method.
 
 There is no Windows Settings → Apps entry, macOS Applications item, Linux package-manager record, ChromeOS PWA cache, desktop-wrapper storage, or service-worker registration to remove.

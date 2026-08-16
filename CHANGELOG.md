@@ -1,6 +1,6 @@
 # Changelog
 
-All notable user-visible changes to genbank_viewer are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the project does not yet claim a complete reconstruction of pre-changelog history.
+All notable user-visible changes to GenBankViz are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the project does not yet claim a complete reconstruction of pre-changelog history.
 
 ## Unreleased
 

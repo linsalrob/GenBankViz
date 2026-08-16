@@ -9,8 +9,8 @@ Prerequisites are Git, Rust 1.85 or newer through `rustup`, Node.js 20 or newer,
 1. While online, open Terminal and run:
 
     ```bash
-    git clone https://github.com/linsalrob/genbank_viewer.git
-    cd genbank_viewer
+    git clone https://github.com/linsalrob/GenBankViz.git
+    cd GenBankViz
     rustup target add wasm32-unknown-unknown
     cargo install wasm-pack
     cd web
@@ -23,13 +23,13 @@ Prerequisites are Git, Rust 1.85 or newer through `rustup`, Node.js 20 or newer,
 
 ## Launch offline
 
-From the retained `genbank_viewer/web` directory:
+From the retained `GenBankViz/web` directory:
 
 ```bash
 npm run preview -- --host 127.0.0.1
 ```
 
-Open <http://127.0.0.1:4173/genbank_viewer/>. Select `.gb`, `.gbk`, `.gbff`, `.genbank`, or the corresponding `.gz` form. Press <kbd>Control</kbd>+<kbd>C</kbd> in Terminal to stop the server.
+Open <http://127.0.0.1:4173/GenBankViz/>. Select `.gb`, `.gbk`, `.gbff`, `.genbank`, or the corresponding `.gz` form. Press <kbd>Control</kbd>+<kbd>C</kbd> in Terminal to stop the server.
 
 Gatekeeper prompts, Control-click opening, and quarantine removal concern downloaded applications or executables. Because the project supplies no `.app`, any such package is an unofficial build. Do not remove quarantine attributes unless an authorised security review has established the package's source and integrity.
 

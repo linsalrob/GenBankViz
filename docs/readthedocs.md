@@ -1,6 +1,6 @@
 # Read the Docs integration
 
-The existing Read the Docs project has slug `genbank-viewer`, canonical URL <https://genbank-viewer.readthedocs.io/en/latest/>, and default branch `main`. Repository inspection confirmed the public project metadata; the current `latest` page returned 404 before this audit because the checked-in configuration selected Sphinx and referenced a nonexistent `docs/conf.py`.
+The existing Read the Docs project has slug `genbankviz`, canonical URL <https://genbankviz.readthedocs.io/en/latest/>, and default branch `main`. Repository inspection confirmed the public project metadata; the current `latest` page returned 404 before this audit because the checked-in configuration selected Sphinx and referenced a nonexistent `docs/conf.py`.
 
 ## Configuration in Git
 
@@ -17,7 +17,7 @@ POST /api/v3/projects/{project_slug}/versions/{version_slug}/builds/
 Confirm these GitHub repository settings before publication:
 
 - Actions secret `RTD_API_TOKEN`: a Read the Docs API token with access to this project;
-- Actions variable `RTD_PROJECT_SLUG`: `genbank-viewer`.
+- Actions variable `RTD_PROJECT_SLUG`: `genbankviz`.
 
 The repository audit could not find either required name, so they remain a manual configuration step. Repository code cannot create or rotate the token, add secrets/variables, approve GitHub App permissions, or change protected Read the Docs dashboard settings. The workflow fails with a clear message when either value is absent and never prints the token.
 
@@ -34,7 +34,7 @@ Keep the existing Read the Docs GitHub App integration for repository access and
 
 ## Verify integration health
 
-1. Confirm the Read the Docs project repository remains `https://github.com/linsalrob/genbank_viewer.git`, default branch is `main`, and configuration-file path is the repository default (`.readthedocs.yaml`).
+1. Confirm the Read the Docs project repository remains `https://github.com/linsalrob/GenBankViz.git`, default branch is `main`, and configuration-file path is the repository default (`.readthedocs.yaml`).
 2. Confirm GitHub App repository access and pull-request build status in the existing dashboard integration.
 3. Confirm branch/tag automation rules follow the version and duplicate-build policies above.
 4. Open the Read the Docs **Builds** page and inspect the checkout, dependency, and MkDocs steps for the latest build.

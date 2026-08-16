@@ -27,7 +27,7 @@ flowchart LR
 
 Parsing tests cover syntax and warnings; core tests cover coordinates, extraction, translation, IUPAC matching, six-frame match mapping, and coding unions; Vitest covers transformations, search navigation, viewports, and geometry; Playwright covers local upload and both search modes through the rendered UI.
 
-The browser's File API reads `.gb`, `.gbk`, `.genbank`, and `.gbff` text. Svelte passes that text to the wasm-bindgen export `parse_genbank_json`, and the returned records drive the viewer. The application has no backend or upload step. `wasm-pack` generates a standard ES-module loader, and Vite rewrites its relative WASM URL into the configured `/genbank_viewer/` asset base for GitHub Pages.
+The browser's File API reads `.gb`, `.gbk`, `.genbank`, and `.gbff` text. Svelte passes that text to the wasm-bindgen export `parse_genbank_json`, and the returned records drive the viewer. The application has no backend or upload step. `wasm-pack` generates a standard ES-module loader, and Vite rewrites its relative WASM URL into the configured `/GenBankViz/` asset base for GitHub Pages.
 
 Search text and the selected record sequence are passed to the thin `search_sequence_json` WASM export. `genome-core` normalizes and validates the query, scans IUPAC nucleotide windows or translates one reading frame at a time, and returns sorted forward-reference intervals. Svelte converts the selected match into a clamped viewport; the Canvas renderer maps the unchanged DTO to current-mode geometry at draw time. Peptides target one shared `FrameRowLayout`; nucleotides target shared forward/reverse `NucleotideRowLayout` entries. No whole-genome translation strings are constructed in TypeScript.
 

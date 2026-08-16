@@ -1,6 +1,6 @@
 # Loading files
 
-genbank_viewer reads GenBank files selected from the local computer. Choose **Choose GenBank file** or drag a file onto the drop area. The accepted names are `.gb`, `.gbk`, `.genbank`, and `.gbff`; each may also end in `.gz`, for example `sample.gbk.gz`. Extension matching is case-insensitive.
+GenBankViz reads GenBank files selected from the local computer. Choose **Choose GenBank file** or drag a file onto the drop area. The accepted names are `.gb`, `.gbk`, `.genbank`, and `.gbff`; each may also end in `.gz`, for example `sample.gbk.gz`. Extension matching is case-insensitive.
 
 Plain files are decoded as UTF-8 in the browser. Gzip files are decompressed in the browser with `DecompressionStream` when available and the bundled `fflate` fallback otherwise. The decompressed text is passed to the local Rust/WebAssembly parser; it is not uploaded.
 

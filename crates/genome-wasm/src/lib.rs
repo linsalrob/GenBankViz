@@ -200,7 +200,7 @@ fn serialize(value: &impl Serialize) -> Result<JsValue, JsValue> {
 
 fn error_value(error: BrowserError) -> JsValue {
     serde_wasm_bindgen::to_value(&error)
-        .unwrap_or_else(|_| JsValue::from_str("genbank_viewer error"))
+        .unwrap_or_else(|_| JsValue::from_str("GenBankViz error"))
 }
 
 fn to_dto(record: GenomeRecord) -> GenomeRecordDto {

@@ -24,11 +24,11 @@
 - **Nucleotide highlight is on the reverse lane:** a reverse result means the reverse complement of the query matches that forward-reference interval. Coordinates still use the forward reference.
 - **Highlight looks different after zooming:** this is intentional. Low zoom targets one peptide frame or an `F nt`/`R nt` lane; high zoom targets the actual amino-acid or nucleotide letter row. The interval and selected result do not change.
 - **Stale WASM:** remove `web/src/lib/wasm-pkg` and run `npm run build:wasm`.
-- **WASM 404 on GitHub Pages:** run `npm run build`, confirm `web/dist/index.html` points to `/genbank_viewer/assets/`, and confirm a `.wasm` file exists beneath `web/dist/assets`.
+- **WASM 404 on GitHub Pages:** run `npm run build`, confirm `web/dist/index.html` points to `/GenBankViz/assets/`, and confirm a `.wasm` file exists beneath `web/dist/assets`.
 - **WASM MIME or initialisation error:** open browser Developer Tools, filter the Network panel for `wasm`, and verify the request returns the binary with a successful status rather than a 404 or HTML document. Check Console for fetch, MIME-type, compilation, or initialisation details.
-- **Wrong local preview URL:** after a production build, use `npm run preview -- --host 127.0.0.1` and open `http://127.0.0.1:4173/genbank_viewer/`, not the server root.
+- **Wrong local preview URL:** after a production build, use `npm run preview -- --host 127.0.0.1` and open `http://127.0.0.1:4173/GenBankViz/`, not the server root.
 - **npm problems:** use the documented Node version and a fresh `npm ci`.
-- **Chromebook permissions:** allow the browser to read the selected local file; genbank_viewer needs no folder-wide access.
+- **Chromebook permissions:** allow the browser to read the selected local file; GenBankViz needs no folder-wide access.
 - **Offline use:** after dependencies and production assets are installed/built, serve the static `web/dist` directory without network access.
 - **A parsed feature is not visible:** only Genes/CDSs and RNAs/transcripts are enabled initially. Use **Annotation tracks** to show processing, regional, assembly/source/variation, or Other features; summary counts include hidden features.
 - **An unfamiliar key is missing:** enable **Other**. Classification preserves unknown or obsolete keys and does not declare them invalid.

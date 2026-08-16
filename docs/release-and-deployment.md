@@ -2,9 +2,9 @@
 
 ## GitHub Pages application
 
-Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow checks Rust and frontend code, builds the WASM package and Vite site, verifies `/genbank_viewer/assets/` paths and a generated `.wasm` file, runs Chromium end-to-end tests, and deploys `web/dist` with GitHub Pages actions.
+Pushes to `main` run `.github/workflows/deploy-pages.yml`. The workflow checks Rust and frontend code, builds the WASM package and Vite site, verifies `/GenBankViz/assets/` paths and a generated `.wasm` file, runs Chromium end-to-end tests, and deploys `web/dist` with GitHub Pages actions.
 
-The hosted application URL is <https://linsalrob.github.io/genbank_viewer/>. Vite production mode uses `/genbank_viewer/`; development mode uses `/`. The header's **Documentation** link comes from `web/src/lib/config.ts`. Override it at build time with `VITE_DOCUMENTATION_URL` if the canonical documentation project moves.
+The hosted application URL is <https://linsalrob.github.io/GenBankViz/>. Vite production mode uses `/GenBankViz/`; development mode uses `/`. The header's **Documentation** link comes from `web/src/lib/config.ts`. Override it at build time with `VITE_DOCUMENTATION_URL` if the canonical documentation project moves.
 
 ## Read the Docs
 
