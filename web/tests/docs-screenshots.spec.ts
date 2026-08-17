@@ -10,7 +10,7 @@ async function capture(page: import('@playwright/test').Page, name: string) {
 }
 
 async function load(page: import('@playwright/test').Page, name: string, heading: string) {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(fixture(name))
   await expect(page.getByRole('heading', { name: heading })).toBeVisible()
   await expect(page.locator('canvas[aria-label^="Genome viewer"]')).toBeVisible()

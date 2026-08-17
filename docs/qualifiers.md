@@ -1,6 +1,6 @@
 # Qualifiers
 
-GenBank qualifiers are key/value annotations attached to features. They are distinct from feature keys and from genbank_viewer's display groups. The parser retains qualifiers in source order, including repeated qualifiers and qualifiers without a value. Expand **All qualifiers** in the **Feature inspector** to view them.
+GenBank qualifiers are key/value annotations attached to features. They are distinct from feature keys and from GenBankViz's display groups. The parser retains qualifiers in source order, including repeated qualifiers and qualifiers without a value. Expand **All qualifiers** in the **Feature inspector** to view them.
 
 | Qualifier | Typical meaning in the viewer |
 |---|---|

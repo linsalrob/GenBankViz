@@ -1,6 +1,6 @@
 # Standalone and offline installation
 
-genbank_viewer can process GenBank files entirely on your own computer. Once an offline-capable installation is complete, opening, decompressing, parsing, translating, searching, and displaying sequence files does not require internet access.
+GenBankViz can process GenBank files entirely on your own computer. Once an offline-capable installation is complete, opening, decompressing, parsing, translating, searching, and displaying sequence files does not require internet access.
 
 “Offline” in this guide means that the application assets and its local web server are already on the computer, the browser opens a `127.0.0.1` address, and no connection to the public internet is needed. `127.0.0.1` is the computer's private loopback address: traffic to it does not leave the computer.
 
@@ -63,8 +63,8 @@ Python 3.10 or newer and the packages in `requirements-docs.txt` are needed only
 Run these commands while internet access is available:
 
 ```bash
-git clone https://github.com/linsalrob/genbank_viewer.git
-cd genbank_viewer
+git clone https://github.com/linsalrob/GenBankViz.git
+cd GenBankViz
 rustup target add wasm32-unknown-unknown
 cargo install wasm-pack
 cd web
@@ -82,7 +82,7 @@ From the retained `web` directory:
 npm run preview -- --host 127.0.0.1
 ```
 
-Open <http://127.0.0.1:4173/genbank_viewer/>. Leave the terminal window open. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in that terminal to stop the server.
+Open <http://127.0.0.1:4173/GenBankViz/>. Leave the terminal window open. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in that terminal to stop the server.
 
 The `127.0.0.1` binding prevents other computers on the local network from opening the server. Do not change it to `0.0.0.0` unless sharing the application on a trusted network is an intentional, reviewed decision. The server does not start automatically; a shortcut may open a terminal and run the command, but shortcut syntax differs by operating system and is not supplied by the project.
 
@@ -118,19 +118,19 @@ There are no published release packages or checksum files to compare today; the 
 Windows PowerShell:
 
 ```powershell
-Get-FileHash .\genbank_viewer-<version>-<platform>.<ext> -Algorithm SHA256
+Get-FileHash .\GenBankViz-<version>-<platform>.<ext> -Algorithm SHA256
 ```
 
 Linux:
 
 ```bash
-sha256sum genbank_viewer-<version>-<platform>.<ext>
+sha256sum GenBankViz-<version>-<platform>.<ext>
 ```
 
 macOS:
 
 ```bash
-shasum -a 256 genbank_viewer-<version>-<platform>.<ext>
+shasum -a 256 GenBankViz-<version>-<platform>.<ext>
 ```
 
 The placeholders are not real filenames. Never treat an example value or a checksum obtained from an untrusted channel as authoritative.

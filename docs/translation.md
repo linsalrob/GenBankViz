@@ -1,6 +1,6 @@
 # Translation
 
-At more than 1.6 bases per CSS pixel, genbank_viewer draws table-specific stop codons as bars in six compact reading-frame rows.
+At more than 1.6 bases per CSS pixel, GenBankViz draws table-specific stop codons as bars in six compact reading-frame rows.
 
 ![Whole-record view with six labelled stop-codon tracks](assets/low-zoom-stop-tracks.png)
 
@@ -8,7 +8,7 @@ At 1.6 bases per CSS pixel or closer, the Canvas shows forward and reverse-compl
 
 ![Detailed nucleotide and six-frame amino-acid rendering](assets/high-zoom-six-frames.png)
 
-genbank_viewer supports the 27 tables listed in [Genetic-code support](genetic-codes.md). Table 11 is the default. Amino-acid mappings, stops, accepted starts, and UI metadata come from one Rust registry exposed through WASM. A start codon can translate to an amino acid other than `M` because start recognition and ordinary codon translation are separate facts.
+GenBankViz supports the 27 tables listed in [Genetic-code support](genetic-codes.md). Table 11 is the default. Amino-acid mappings, stops, accepted starts, and UI metadata come from one Rust registry exposed through WASM. A start codon can translate to an amino acid other than `M` because start recognition and ordinary codon translation are separate facts.
 
 Frames `+1..+3` begin at global reference offsets 0, 1, and 2. Frames `-1..-3` begin at offsets 0, 1, and 2 of the complete reverse complement. Reverse codons return increasing forward-reference intervals but codon letters in translated 5′→3′ orientation.
 

@@ -1,8 +1,8 @@
 # Feature keys and display groups
 
-A **feature key** names an annotated region, such as `CDS`, `tRNA`, or `repeat_region`. A **qualifier** is metadata attached to that feature, such as `/gene="recA"`. A **display group** is genbank_viewer's visual organisation of related feature keys.
+A **feature key** names an annotated region, such as `CDS`, `tRNA`, or `repeat_region`. A **qualifier** is metadata attached to that feature, such as `/gene="recA"`. A **display group** is GenBankViz's visual organisation of related feature keys.
 
-Classification is case-insensitive for display, but the original feature-key spelling is preserved. Unknown, obsolete, or non-standard keys remain available under **Other**. This taxonomy is a viewer convention, not an official INSDC hierarchy, and genbank_viewer is not a complete INSDC validator.
+Classification is case-insensitive for display, but the original feature-key spelling is preserved. Unknown, obsolete, or non-standard keys remain available under **Other**. This taxonomy is a viewer convention, not an official INSDC hierarchy, and GenBankViz is not a complete INSDC validator.
 
 | Display group | Initially visible | Implemented feature keys |
 |---|---:|---|

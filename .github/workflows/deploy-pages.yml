@@ -73,7 +73,7 @@ jobs:
         run: |
           test -f web/dist/index.html
           find web/dist -type f -name '*.wasm' -print -quit | grep -q .
-          grep -q '"/genbank_viewer/assets/' web/dist/index.html
+          grep -q '"/GenBankViz/assets/' web/dist/index.html
           if grep -Eq '(src|href)="/assets/' web/dist/index.html; then
             echo "Found an asset URL that incorrectly assumes deployment at /" >&2
             exit 1

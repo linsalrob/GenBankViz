@@ -8,6 +8,14 @@ const markdown = [path.join(root, 'README.md'), path.join(root, 'CHANGELOG.md')]
   .concat(fs.readdirSync(docs).filter((name) => name.endsWith('.md')).map((name) => path.join(docs, name)))
 const errors = []
 const referencedImages = new Set()
+const mkdocs = fs.readFileSync(path.join(root, 'mkdocs.yml'), 'utf8')
+
+for (const match of mkdocs.matchAll(/^\s*favicon:\s*(\S+)\s*$/gm)) {
+  const target = match[1]
+  const resolved = path.resolve(docs, target)
+  if (!fs.existsSync(resolved)) errors.push(`mkdocs.yml: missing favicon ${target}`)
+  if (resolved.startsWith(path.join(docs, 'assets'))) referencedImages.add(path.basename(resolved))
+}
 
 for (const file of markdown) {
   const text = fs.readFileSync(file, 'utf8')

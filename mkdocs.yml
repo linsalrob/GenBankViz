@@ -1,20 +1,21 @@
-site_name: genbank_viewer
+site_name: GenBankViz
 site_description: Local-first GenBank genome viewer for inspection, translation, and exact sequence search
-site_url: https://genbank-viewer.readthedocs.io/en/latest/
-repo_url: https://github.com/linsalrob/genbank_viewer
-repo_name: linsalrob/genbank_viewer
+site_url: https://genbankviz.readthedocs.io/en/latest/
+repo_url: https://github.com/linsalrob/GenBankViz
+repo_name: linsalrob/GenBankViz
 edit_uri: edit/main/docs/
 theme:
   name: material
   font: false
+  favicon: assets/favicon.ico
   features:
     - navigation.sections
     - navigation.top
     - content.code.copy
 nav:
   - Home: index.md
-  - Using genbank_viewer:
-      - Quick start: how-to-use-genbank_viewer.md
+  - Using GenBankViz:
+      - Quick start: how-to-use-GenBankViz.md
       - Loading files: loading-files.md
       - Navigating and zooming: navigation.md
       - Annotation tracks: annotation-tracks.md

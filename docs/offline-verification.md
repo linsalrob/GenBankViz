@@ -1,13 +1,13 @@
 # Verify offline operation and local processing
 
-Complete this test with non-sensitive sample files before relying on genbank_viewer in a restricted environment. The repository includes `test-data/simple_linear.gbk` and `test-data/simple_linear.gbk.gz` for this purpose.
+Complete this test with non-sensitive sample files before relying on GenBankViz in a restricted environment. The repository includes `test-data/simple_linear.gbk` and `test-data/simple_linear.gbk.gz` for this purpose.
 
 ## Basic user test
 
 1. Build the local production application and open it once.
 2. Stop the local server and close the browser tab.
 3. Disconnect Wi-Fi and Ethernet, or enable airplane mode.
-4. Restart the server with `npm run preview -- --host 127.0.0.1` and reopen <http://127.0.0.1:4173/genbank_viewer/>.
+4. Restart the server with `npm run preview -- --host 127.0.0.1` and reopen <http://127.0.0.1:4173/GenBankViz/>.
 5. Load a local uncompressed GenBank file and confirm its record name and annotations appear.
 6. Load a local gzip-compressed GenBank file and confirm it produces the same record.
 7. Select feature arrows and inspect their qualifiers.
@@ -25,7 +25,7 @@ Successful completion verifies the tested build and browser on that computer. It
 2. Open the browser's Developer Tools and select **Network**.
 3. Clear previous entries, enable preservation of the log if available, and reload the application.
 4. Filter by **Fetch/XHR** and `wasm`, then repeat file loading, search, translation, and genetic-code switching.
-5. Inspect every request. Expected application requests use `http://127.0.0.1:4173/genbank_viewer/` and its local `assets` paths. The WASM response must come from that local origin, not a content-delivery network (CDN).
+5. Inspect every request. Expected application requests use `http://127.0.0.1:4173/GenBankViz/` and its local `assets` paths. The WASM response must come from that local origin, not a content-delivery network (CDN).
 6. Confirm no request body, URL, header added by the application, or remote connection contains a filename, sequence, annotation, or search query.
 
 Browser extensions and browser-owned services can create unrelated requests. Repeat in a clean browser profile with extensions disabled if attribution is unclear. A request to a public `http://` or `https://` origin is not expected from current application code; investigate it before loading sensitive data.

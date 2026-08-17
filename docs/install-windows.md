@@ -10,8 +10,8 @@ Prerequisites: Git, Rust 1.85 or newer installed with `rustup`, Node.js 20 or ne
 2. Clone and enter the project:
 
     ```powershell
-    git clone https://github.com/linsalrob/genbank_viewer.git
-    cd genbank_viewer
+    git clone https://github.com/linsalrob/GenBankViz.git
+    cd GenBankViz
     ```
 
 3. Install the WASM target and `wasm-pack`:
@@ -34,17 +34,17 @@ Prerequisites: Git, Rust 1.85 or newer installed with `rustup`, Node.js 20 or ne
 ## Launch offline
 
 1. Disconnect the computer from the network.
-2. Open a terminal in the retained `genbank_viewer\web` directory.
+2. Open a terminal in the retained `GenBankViz\web` directory.
 3. Run:
 
     ```powershell
     npm run preview -- --host 127.0.0.1
     ```
 
-4. Open <http://127.0.0.1:4173/genbank_viewer/> in a current browser.
+4. Open <http://127.0.0.1:4173/GenBankViz/> in a current browser.
 5. Select `.gb`, `.gbk`, `.gbff`, or `.genbank`, or the corresponding filename followed by `.gz`, using **Choose GenBank file** or drag and drop.
 6. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal to stop the server.
 
-There is no default application installation directory, Start Menu entry, file association, or application executable. Microsoft SmartScreen warnings normally apply to downloaded executables; this project does not currently supply one. Treat any website offering a genbank_viewer installer as an unofficial build and verify its provenance.
+There is no default application installation directory, Start Menu entry, file association, or application executable. Microsoft SmartScreen warnings normally apply to downloaded executables; this project does not currently supply one. Treat any website offering a GenBankViz installer as an unofficial build and verify its provenance.
 
 Follow [Offline verification](offline-verification.md), then see [Updating and uninstalling](updating-and-uninstalling.md). Windows Settings → Apps does not list this source build; removal consists of deleting the retained project directory and separately removing tools only if they are no longer needed.

@@ -5,9 +5,9 @@ test('loads a local multi-record GenBank file and operates the viewer', async ({
   const requests: string[] = []
   page.on('request', (request) => requests.push(request.url()))
 
-  await page.goto('/genbank_viewer/')
-  await expect(page.getByRole('link', { name: 'genbank_viewer Documentation' })).toHaveAttribute(
-    'href', 'https://genbank-viewer.readthedocs.io/en/latest/',
+  await page.goto('/GenBankViz/')
+  await expect(page.getByRole('link', { name: 'GenBankViz Documentation' })).toHaveAttribute(
+    'href', 'https://genbankviz.readthedocs.io/en/latest/',
   )
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/two_records.gbk'))
   await expect(page.getByRole('heading', { name: 'FIRST' })).toBeVisible()
@@ -23,12 +23,12 @@ test('loads a local multi-record GenBank file and operates the viewer', async ({
   await expect(page.locator('canvas[aria-label^="Genome viewer"]')).toHaveAttribute('aria-label', /No sequence search match highlighted/)
   await page.locator('canvas[aria-label^="Genome viewer"]').click({ position: { x: 100, y: 40 } })
 
-  expect(requests.some((url) => url.includes('/genbank_viewer/assets/') && url.endsWith('.wasm'))).toBe(true)
+  expect(requests.some((url) => url.includes('/GenBankViz/assets/') && url.endsWith('.wasm'))).toBe(true)
   expect(requests.every((url) => new URL(url).origin === 'http://127.0.0.1:4173')).toBe(true)
 })
 
 test('loads gzip locally and supports grouped source visibility and feature genetic codes', async ({ page }) => {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/simple_linear.gbk.gz'))
   await expect(page.getByRole('heading', { name: 'SIMPLE1' })).toBeVisible()
 
@@ -57,7 +57,7 @@ test('loads gzip locally and supports grouped source visibility and feature gene
 })
 
 test('toggles grouped annotation tracks and inspects an unknown feature', async ({ page }) => {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/grouped_tracks.gbk'))
   await expect(page.getByRole('heading', { name: 'TRACKTEST' })).toBeVisible()
   const canvas = page.locator('canvas[aria-label^="Genome viewer"]')
@@ -89,7 +89,7 @@ test('toggles grouped annotation tracks and inspects an unknown feature', async 
 })
 
 test('searches nucleotides and six-frame peptides locally and navigates matches', async ({ page }) => {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/simple_linear.gbk.gz'))
   await expect(page.getByRole('heading', { name: 'SIMPLE1' })).toBeVisible()
 
@@ -123,7 +123,7 @@ test('searches nucleotides and six-frame peptides locally and navigates matches'
 })
 
 test('shows genetic-code-aware stop tracks before the detailed sequence view', async ({ page }) => {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/stop_tracks.gbk'))
   await expect(page.getByRole('heading', { name: 'STOPTRACK' })).toBeVisible()
 
@@ -149,7 +149,7 @@ test('shows genetic-code-aware stop tracks before the detailed sequence view', a
 })
 
 test('moves peptide and nucleotide highlights between shared low- and high-zoom rows', async ({ page }) => {
-  await page.goto('/genbank_viewer/')
+  await page.goto('/GenBankViz/')
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/stop_tracks.gbk'))
   await expect(page.getByRole('heading', { name: 'STOPTRACK' })).toBeVisible()
   const canvas = page.locator('canvas[aria-label^="Genome viewer"]')
