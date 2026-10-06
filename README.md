@@ -30,6 +30,41 @@ Files are processed inside the browser and are not uploaded. GenBankViz currentl
 
 Current evergreen Chrome, Edge, Firefox, and Safari releases are the supported targets. Chromium-based Chromebooks are supported subject to browser file permissions.
 
+## Artemis feature colours
+
+GenBankViz honours Artemis feature colours via the `/colour` qualifier, including the default Artemis palette numbers and RGB triplets. When a feature specifies a colour, the rendered feature track uses that colour while keeping the existing group styling for selected features and text labels.
+
+| Number | Artemis colour | Displayed highlight |
+| --- | --- | --- |
+| 0 | `#ffffff` (white) | white |
+| 1 | `#646464` (dark grey) | dark grey |
+| 2 | `#ff0000` (red) | red |
+| 3 | `#00ff00` (green) | green |
+| 4 | `#0000ff` (blue) | blue |
+| 5 | `#00ffff` (cyan) | cyan |
+| 6 | `#ff00ff` (magenta) | magenta |
+| 7 | `#ffff00` (yellow) | yellow |
+| 8 | `#98fb98` (pale green) | pale green |
+| 9 | `#87cefa` (light sky blue) | light sky blue |
+| 10 | `#ffa500` (orange) | orange |
+| 11 | `#c89664` (brown) | brown |
+| 12 | `#ffc0cb` (pale pink) | pale pink |
+| 13 | `#aaaaaa` (light grey) | light grey |
+| 14 | `#000000` (black) | black |
+| 15 | `#ff3f3f` (mid red) | mid red |
+| 16 | `#ff7f7f` (light red) | light red |
+| 17 | `#ffbfbf` (pink) | pink |
+
+Example feature table entries:
+
+```text
+FT   CDS             10..50
+FT                   /gene="abc"
+FT                   /colour=4
+```
+
+The value may also be provided as an RGB triplet such as `/colour=255 0 0` or as a hex colour like `/colour=#ff0000`.
+
 ## Standalone and offline installation
 
 The hosted GitHub Pages site and an offline installation are different. The hosted site needs a network connection to load and is not an installable Progressive Web App (PWA). Prebuilt desktop installers are not currently published, and the repository has no desktop wrapper.
