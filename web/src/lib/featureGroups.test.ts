@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { FeatureDto } from './genomeTypes'
-import { FEATURE_GROUPS, classifyFeatureType, defaultVisibleFeatureGroups, featuresInGroup } from './featureGroups'
+import { FEATURE_GROUPS, classifyFeatureType, defaultVisibleFeatureGroups, featureColour, featuresInGroup } from './featureGroups'
 
 const mappings = {
   genes: ['gene', 'CDS'],
@@ -33,5 +33,21 @@ describe('feature group registry', () => {
     const features = [{ type: 'tRNA' }, { type: 'customThing' }] as FeatureDto[]
     expect(featuresInGroup(features, 'rna')[0].type).toBe('tRNA')
     expect(featuresInGroup(features, 'other')[0].type).toBe('customThing')
+  })
+
+  it('resolves Artemis feature colours from the /colour qualifier', () => {
+    const features = [
+      { type: 'CDS', qualifiers: [{ key: 'colour', value: '4' }] },
+      { type: 'CDS', qualifiers: [{ key: 'colour', value: '255 0 0' }] },
+      { type: 'CDS', qualifiers: [{ key: 'colour', value: '#00ff00' }] },
+      { type: 'CDS', qualifiers: [{ key: 'colour', value: '15' }] },
+      { type: 'CDS', qualifiers: [{ key: 'colour', value: '999' }] },
+    ] as FeatureDto[]
+
+    expect(featureColour(features[0])).toBe('#0000ff')
+    expect(featureColour(features[1])).toBe('#ff0000')
+    expect(featureColour(features[2])).toBe('#00ff00')
+    expect(featureColour(features[3])).toBe('#ff3f3f')
+    expect(featureColour(features[4])).toBeUndefined()
   })
 })

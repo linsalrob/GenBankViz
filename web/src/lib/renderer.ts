@@ -1,5 +1,5 @@
 import type { FeatureDto, GenomeRecordDto, SequenceSearchMatchDto, StopCodonDto, TranslationDto } from './genomeTypes'
-import { classifyFeatureType, displayFeatureLabel, type FeatureGroupId } from './featureGroups'
+import { classifyFeatureType, displayFeatureLabel, featureColour, type FeatureGroupId } from './featureGroups'
 import { bpPerPixel, genomeToScreen, type GenomeViewport } from './viewport'
 
 export interface HitRegion { featureId: number; x: number; y: number; width: number; height: number }
@@ -497,12 +497,16 @@ function drawFeatureShape(
   const type = feature.type.toLowerCase()
   context.setLineDash([])
   if (selected) context.fillStyle = '#ffb000'
-  else if (group === 'genes') context.fillStyle = type === 'gene' ? '#356c8a' : feature.strand === -1 ? '#8f4261' : '#147d64'
-  else if (group === 'rna') context.fillStyle = '#5865a8'
-  else if (group === 'protein_processing') context.fillStyle = '#a85d16'
-  else if (group === 'regional') context.fillStyle = 'rgba(114, 90, 153, .28)'
-  else if (group === 'assembly_variation') context.fillStyle = 'rgba(121, 132, 143, .28)'
-  else context.fillStyle = 'rgba(75, 94, 112, .35)'
+  else {
+    const colour = featureColour(feature)
+    if (colour) context.fillStyle = colour
+    else if (group === 'genes') context.fillStyle = type === 'gene' ? '#356c8a' : feature.strand === -1 ? '#8f4261' : '#147d64'
+    else if (group === 'rna') context.fillStyle = '#5865a8'
+    else if (group === 'protein_processing') context.fillStyle = '#a85d16'
+    else if (group === 'regional') context.fillStyle = 'rgba(114, 90, 153, .28)'
+    else if (group === 'assembly_variation') context.fillStyle = 'rgba(121, 132, 143, .28)'
+    else context.fillStyle = 'rgba(75, 94, 112, .35)'
+  }
 
   if (group === 'genes' || group === 'rna' || group === 'protein_processing') {
     drawArrow(context, piece.x, piece.y, piece.width, piece.height, feature.strand === -1 ? -1 : 1, part)

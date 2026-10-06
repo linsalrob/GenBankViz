@@ -69,6 +69,53 @@ export function qualifierValue(feature: FeatureDto, key: string): string | undef
   return feature.qualifiers.find((qualifier) => qualifier.key.toLowerCase() === key.toLowerCase())?.value
 }
 
+const ARTEMIS_COLOURS: Record<number, string> = {
+  0: '#ffffff',
+  1: '#646464',
+  2: '#ff0000',
+  3: '#00ff00',
+  4: '#0000ff',
+  5: '#00ffff',
+  6: '#ff00ff',
+  7: '#ffff00',
+  8: '#98fb98',
+  9: '#87cefa',
+  10: '#ffa500',
+  11: '#c89664',
+  12: '#ffc0cb',
+  13: '#aaaaaa',
+  14: '#000000',
+  15: '#ff3f3f',
+  16: '#ff7f7f',
+  17: '#ffbfbf',
+}
+
+function rgbToHex(red: number, green: number, blue: number): string {
+  return `#${[red, green, blue].map((component) => component.toString(16).padStart(2, '0')).join('')}`
+}
+
+export function featureColour(feature: FeatureDto): string | undefined {
+  const raw = qualifierValue(feature, 'colour')?.trim().replace(/^['"]|['"]$/g, '')
+  if (!raw) return undefined
+  if (/^#[0-9a-f]{6}$/i.test(raw)) return raw.toLowerCase()
+
+  const triplet = raw.split(/\s+/)
+  if (triplet.length === 3 && triplet.every((part) => /^\d+$/.test(part))) {
+    const [red, green, blue] = triplet.map(Number)
+    if ([red, green, blue].every((component) => component >= 0 && component <= 255)) {
+      return rgbToHex(red, green, blue)
+    }
+  }
+
+  if (/^\d+$/.test(raw)) {
+    const index = Number.parseInt(raw, 10)
+    if (Object.hasOwn(ARTEMIS_COLOURS, index)) {
+      return ARTEMIS_COLOURS[index]
+    }
+  }
+  return undefined
+}
+
 export function displayFeatureLabel(feature: FeatureDto): string {
   const type = feature.type.toLowerCase()
   if (type === 'regulatory') return qualifierValue(feature, 'regulatory_class') ?? feature.label
