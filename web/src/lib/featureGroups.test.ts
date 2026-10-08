@@ -3,7 +3,8 @@ import type { FeatureDto } from './genomeTypes'
 import { FEATURE_GROUPS, classifyFeatureType, defaultVisibleFeatureGroups, featuresInGroup } from './featureGroups'
 
 const mappings = {
-  genes: ['gene', 'CDS'],
+  genes: ['gene'],
+  cds: ['CDS'],
   rna: ['mRNA', 'ncRNA', 'misc_RNA', 'precursor_RNA', 'prim_transcript', 'rRNA', 'tRNA', 'tmRNA', 'exon', 'intron', "5'UTR", "3'UTR"],
   protein_processing: ['mat_peptide', 'sig_peptide', 'transit_peptide', 'propeptide'],
   regional: ['operon', 'regulatory', 'protein_bind', 'primer_bind', 'misc_binding', 'polyA_site', 'rep_origin', 'oriT', 'D-loop', 'repeat_region', 'mobile_element', 'misc_recomb', 'stem_loop', 'misc_structure', 'misc_feature', 'iDNA', 'centromere', 'telomere', 'STS'],
@@ -25,9 +26,9 @@ describe('feature group registry', () => {
     expect(classifyFeatureType('custom_key')).toBe('other')
     expect(classifyFeatureType('')).toBe('other')
   })
-  it('enables only genes and RNA by default', () => {
-    expect([...defaultVisibleFeatureGroups()]).toEqual(['genes', 'rna'])
-    expect(FEATURE_GROUPS.filter((group) => group.defaultVisible).map((group) => group.id)).toEqual(['genes', 'rna'])
+  it('enables CDS and RNA by default', () => {
+    expect([...defaultVisibleFeatureGroups()]).toEqual(['cds', 'rna'])
+    expect(FEATURE_GROUPS.filter((group) => group.defaultVisible).map((group) => group.id)).toEqual(['cds', 'rna'])
   })
   it('filters without changing feature keys', () => {
     const features = [{ type: 'tRNA' }, { type: 'customThing' }] as FeatureDto[]

@@ -206,7 +206,7 @@
       {/each}
     </fieldset>
     <div class="track-legend" aria-label="Annotation track legend">
-      <strong>Track styles:</strong><span class="genes">arrow · Genes/CDSs</span><span class="rna">outlined arrow · RNAs</span><span class="processing">narrow arrow · Processing</span><span class="regional">translucent band · Regions</span><span class="assembly">dashed block/marker · Assembly/variation</span><span class="other">neutral outline · Other</span><small>Dense overlaps share the last compact lane; no feature is discarded.</small>
+      <strong>Track styles:</strong><span class="genes">arrow · Genes</span><span class="genes">arrow · CDSs</span><span class="rna">outlined arrow · RNAs</span><span class="processing">narrow arrow · Processing</span><span class="regional">translucent band · Regions</span><span class="assembly">dashed block/marker · Assembly/variation</span><span class="other">neutral outline · Other</span><small>Dense overlaps share the last compact lane; no feature is discarded.</small>
     </div>
     <SequenceSearch bind:query={searchQuery} bind:searchType {geneticCode} features={genome.features}
       matches={searchMatches} selectedIndex={searchIndex} status={searchStatus} error={searchError}
