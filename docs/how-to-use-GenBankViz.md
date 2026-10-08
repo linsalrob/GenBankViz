@@ -8,7 +8,7 @@ Open the [live application](https://linsalrob.github.io/GenBankViz/) in a curren
 2. Under **Open a local GenBank file**, choose a `.gb`, `.gbk`, `.genbank`, or `.gbff` file. Gzip forms such as `.gb.gz`, `.gbk.gz`, `.genbank.gz`, and `.gbff.gz` are also accepted and decompressed locally.
 3. Alternatively, drag the file onto the dashed loading area. The filename, size, parsing state, record count, and warning count appear.
 4. For a multi-record file, choose **Record**. The selector shows ID, length, and feature count; changing records resets the view and selection.
-5. The initial whole-genome view shows a ruler, Genes/CDSs and RNA tracks, six stop-codon tracks, and separated reverse features. Whole-record `source` annotations are hidden by default; enable **Assembly, source, and variation** to display their subdued, dashed track.
+5. The initial whole-genome view shows a ruler, CDS and RNA tracks, six stop-codon tracks, and separated reverse features. Whole-record `source` annotations are hidden by default; enable **Assembly, source, and variation** to display their subdued, dashed track.
 6. Green right-pointing arrows are forward CDSs; purple left-pointing arrows are reverse CDSs. Joined blocks have connectors and partial blocks use dashed edges.
 7. Wheel or trackpad scroll around the pointer to zoom without losing the position beneath it. Double-click also zooms in.
 8. Drag horizontally, or focus the Canvas and use Left/Right arrows, to pan.

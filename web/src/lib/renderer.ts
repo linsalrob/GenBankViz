@@ -86,7 +86,7 @@ function groupLaneCount(features: FeatureDto[], group: FeatureGroupId, strand: 1
 /** Positions enabled feature groups and shared nucleotide/frame rows dynamically. */
 export function buildViewerLayout(
   view: GenomeViewport,
-  visibleGroups: Set<FeatureGroupId> = new Set(['genes', 'rna']),
+  visibleGroups: Set<FeatureGroupId> = new Set(['cds', 'rna']),
   options: ViewerLayoutOptions = {},
 ): ViewerLayout {
   const mode = renderMode(view)
@@ -103,6 +103,7 @@ export function buildViewerLayout(
   }
   addGroupRows('regional', 'Regions', 0)
   addGroupRows('genes', 'Genes +', 1)
+  addGroupRows('cds', 'CDSs +', 1)
   addGroupRows('rna', 'RNAs +', 1)
   addGroupRows('protein_processing', 'Processing +', 1)
   addGroupRows('other', 'Other +', 1)
@@ -123,6 +124,7 @@ export function buildViewerLayout(
   addGroupRows('other', 'Other −', -1)
   addGroupRows('protein_processing', 'Processing −', -1)
   addGroupRows('rna', 'RNAs −', -1)
+  addGroupRows('cds', 'CDSs −', -1)
   addGroupRows('genes', 'Genes −', -1)
   addGroupRows('assembly_variation', 'Assembly', 0)
   return { mode, height: y + 8, trackRows, frameRows: [...positiveRows, ...negativeRows], nucleotideRows: [forwardNucleotide, reverseNucleotide] }
@@ -465,7 +467,7 @@ function drawGroupedFeatures(
     }
     const width = pieces.reduce((sum, piece) => sum + piece.width, 0)
     if (state.showLabels && width >= RENDER_CONFIG.labelMinimumPixels) {
-      context.fillStyle = group === 'genes' || group === 'rna' ? '#fff' : '#263849'
+      context.fillStyle = group === 'genes' || group === 'cds' || group === 'rna' ? '#fff' : '#263849'
       context.font = '11px system-ui'
       context.textAlign = 'left'
       context.fillText(displayFeatureLabel(feature), pieces[0].x + 5, y + Math.min(14, featureHeight - 3), width - 9)
@@ -497,16 +499,17 @@ function drawFeatureShape(
   const type = feature.type.toLowerCase()
   context.setLineDash([])
   if (selected) context.fillStyle = '#ffb000'
-  else if (group === 'genes') context.fillStyle = type === 'gene' ? '#356c8a' : feature.strand === -1 ? '#8f4261' : '#147d64'
+  else if (group === 'genes') context.fillStyle = '#356c8a'
+  else if (group === 'cds') context.fillStyle = feature.strand === -1 ? '#8f4261' : '#147d64'
   else if (group === 'rna') context.fillStyle = '#5865a8'
   else if (group === 'protein_processing') context.fillStyle = '#a85d16'
   else if (group === 'regional') context.fillStyle = 'rgba(114, 90, 153, .28)'
   else if (group === 'assembly_variation') context.fillStyle = 'rgba(121, 132, 143, .28)'
   else context.fillStyle = 'rgba(75, 94, 112, .35)'
 
-  if (group === 'genes' || group === 'rna' || group === 'protein_processing') {
+  if (group === 'genes' || group === 'cds' || group === 'rna' || group === 'protein_processing') {
     drawArrow(context, piece.x, piece.y, piece.width, piece.height, feature.strand === -1 ? -1 : 1, part)
-    context.strokeStyle = group === 'rna' ? '#252d67' : group === 'protein_processing' ? '#663500' : '#24475a'
+    context.strokeStyle = group === 'rna' ? '#252d67' : group === 'protein_processing' ? '#663500' : group === 'genes' ? '#24475a' : '#0d5b4b'
     if (type === 'gene') context.setLineDash([3, 2])
     context.stroke()
   } else {
