@@ -33,7 +33,7 @@ test('loads gzip locally and supports grouped source visibility and feature gene
   await expect(page.getByRole('heading', { name: 'SIMPLE1' })).toBeVisible()
 
   const canvas = page.locator('canvas[aria-label^="Genome viewer"]')
-  await expect(canvas).toHaveAttribute('aria-label', /Visible track groups: genes, rna.*Genetic code 11/)
+  await expect(canvas).toHaveAttribute('aria-label', /Visible track groups: cds, rna.*Genetic code 11/)
   const canvasBox = await canvas.boundingBox()
   const inspectorBox = await page.getByLabel('Feature inspector region').boundingBox()
   expect(canvasBox).not.toBeNull()
@@ -61,8 +61,8 @@ test('toggles grouped annotation tracks and inspects an unknown feature', async 
   await page.getByTestId('file-input').setInputFiles(path.resolve('../test-data/grouped_tracks.gbk'))
   await expect(page.getByRole('heading', { name: 'TRACKTEST' })).toBeVisible()
   const canvas = page.locator('canvas[aria-label^="Genome viewer"]')
-  await expect(canvas).toHaveAttribute('data-visible-groups', 'genes,rna')
-  await expect(canvas).toHaveAttribute('data-visible-feature-types', /gene,CDS,tRNA,rRNA/)
+  await expect(canvas).toHaveAttribute('data-visible-groups', 'cds,rna')
+  await expect(canvas).toHaveAttribute('data-visible-feature-types', /CDS,tRNA,rRNA/)
   await expect(canvas).not.toHaveAttribute('data-visible-feature-types', /source|regulatory|custom_track/)
 
   await page.getByLabel(/Regulatory and genomic regions/).check()

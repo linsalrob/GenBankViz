@@ -6,7 +6,8 @@ Classification is case-insensitive for display, but the original feature-key spe
 
 | Display group | Initially visible | Implemented feature keys |
 |---|---:|---|
-| Genes and CDSs | Yes | `gene`, `cds` |
+| Genes | No | `gene` |
+| CDSs | Yes | `cds` |
 | RNAs and transcripts | Yes | `mrna`, `ncrna`, `misc_rna`, `precursor_rna`, `prim_transcript`, `rrna`, `trna`, `tmrna`, `exon`, `intron`, `5'utr`, `3'utr` |
 | Protein processing | No | `mat_peptide`, `sig_peptide`, `transit_peptide`, `propeptide` |
 | Regulatory and genomic regions | No | `operon`, `regulatory`, `protein_bind`, `primer_bind`, `misc_binding`, `polya_site`, `rep_origin`, `orit`, `d-loop`, `repeat_region`, `mobile_element`, `misc_recomb`, `stem_loop`, `misc_structure`, `misc_feature`, `idna`, `centromere`, `telomere`, `sts` |

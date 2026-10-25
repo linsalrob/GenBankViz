@@ -2,6 +2,7 @@ import type { FeatureDto } from './genomeTypes'
 
 export type FeatureGroupId =
   | 'genes'
+  | 'cds'
   | 'rna'
   | 'protein_processing'
   | 'regional'
@@ -17,17 +18,19 @@ export interface FeatureGroupDefinition {
 }
 
 export const FEATURE_GROUPS: readonly FeatureGroupDefinition[] = [
-  { id: 'genes', label: 'Genes and CDSs', description: 'Gene spans and protein-coding sequences.', defaultVisible: true, trackOrder: 1 },
-  { id: 'rna', label: 'RNAs and transcripts', description: 'RNA genes, transcripts, exons, introns, and untranslated regions.', defaultVisible: true, trackOrder: 2 },
-  { id: 'protein_processing', label: 'Protein processing', description: 'Mature peptides, signal peptides, transit peptides, and propeptides.', defaultVisible: false, trackOrder: 3 },
-  { id: 'regional', label: 'Regulatory and genomic regions', description: 'Operons, regulatory sites, repeats, mobile elements, and other broad regions.', defaultVisible: false, trackOrder: 4 },
-  { id: 'assembly_variation', label: 'Assembly, source, and variation', description: 'Source spans, gaps, assembly uncertainty, and sequence variation.', defaultVisible: false, trackOrder: 5 },
-  { id: 'other', label: 'Other', description: 'Unknown, obsolete, or non-standard feature keys retained by the parser.', defaultVisible: false, trackOrder: 6 },
+  { id: 'genes', label: 'Genes', description: 'Gene spans and other gene-like annotation markers.', defaultVisible: false, trackOrder: 1 },
+  { id: 'cds', label: 'CDSs', description: 'Protein-coding sequences and CDS-related spans.', defaultVisible: true, trackOrder: 2 },
+  { id: 'rna', label: 'RNAs and transcripts', description: 'RNA genes, transcripts, exons, introns, and untranslated regions.', defaultVisible: true, trackOrder: 3 },
+  { id: 'protein_processing', label: 'Protein processing', description: 'Mature peptides, signal peptides, transit peptides, and propeptides.', defaultVisible: false, trackOrder: 4 },
+  { id: 'regional', label: 'Regulatory and genomic regions', description: 'Operons, regulatory sites, repeats, mobile elements, and other broad regions.', defaultVisible: false, trackOrder: 5 },
+  { id: 'assembly_variation', label: 'Assembly, source, and variation', description: 'Source spans, gaps, assembly uncertainty, and sequence variation.', defaultVisible: false, trackOrder: 6 },
+  { id: 'other', label: 'Other', description: 'Unknown, obsolete, or non-standard feature keys retained by the parser.', defaultVisible: false, trackOrder: 7 },
 ]
 
 // Viewer taxonomy only: unknown keys remain intact and fall through to Other.
 const FEATURE_TYPES: Record<Exclude<FeatureGroupId, 'other'>, readonly string[]> = {
-  genes: ['gene', 'cds'],
+  genes: ['gene'],
+  cds: ['cds'],
   rna: ['mrna', 'ncrna', 'misc_rna', 'precursor_rna', 'prim_transcript', 'rrna', 'trna', 'tmrna', 'exon', 'intron', "5'utr", "3'utr"],
   protein_processing: ['mat_peptide', 'sig_peptide', 'transit_peptide', 'propeptide'],
   regional: ['operon', 'regulatory', 'protein_bind', 'primer_bind', 'misc_binding', 'polya_site', 'rep_origin', 'orit', 'd-loop', 'repeat_region', 'mobile_element', 'misc_recomb', 'stem_loop', 'misc_structure', 'misc_feature', 'idna', 'centromere', 'telomere', 'sts'],
@@ -59,7 +62,7 @@ export function defaultVisibleFeatureGroups(): Set<FeatureGroupId> {
 
 export function featureGroupCounts(features: FeatureDto[]): Record<FeatureGroupId, number> {
   const counts: Record<FeatureGroupId, number> = {
-    genes: 0, rna: 0, protein_processing: 0, regional: 0, assembly_variation: 0, other: 0,
+    genes: 0, cds: 0, rna: 0, protein_processing: 0, regional: 0, assembly_variation: 0, other: 0,
   }
   for (const feature of features) counts[classifyFeatureType(feature.type)]++
   return counts

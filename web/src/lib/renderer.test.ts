@@ -25,7 +25,7 @@ const context = {
   strokeRect: vi.fn(), save: vi.fn(), rect: vi.fn(), clip: vi.fn(), restore: vi.fn(),
   fillStyle: '', strokeStyle: '', font: '', textAlign: '', lineWidth: 1,
 } as unknown as CanvasRenderingContext2D
-const state = { showLabels: true, showStarts: true, visibleGroups: new Set(['genes'] as const) }
+const state = { showLabels: true, showStarts: true, visibleGroups: new Set(['cds'] as const) }
 describe('renderer geometry', () => {
   beforeEach(() => vi.clearAllMocks())
   it('creates geometry for every joined part', () => {
@@ -43,12 +43,12 @@ describe('renderer geometry', () => {
   })
   it('filters source features without removing CDS features', () => {
     expect(featuresForRendering(genome, state).map((item) => item.id)).toEqual([7])
-    expect(featuresForRendering(genome, { ...state, visibleGroups: new Set(['genes', 'assembly_variation'] as const) }).map((item) => item.id)).toEqual([1, 7])
+    expect(featuresForRendering(genome, { ...state, visibleGroups: new Set(['cds', 'assembly_variation'] as const) }).map((item) => item.id)).toEqual([1, 7])
   })
   it('excludes source hit regions until source display is enabled', () => {
     const viewport = { start: 0, end: 1000, width: 100 }
     const hidden = renderGenome(context, genome, viewport, state).hitRegions
-    const visible = renderGenome(context, genome, viewport, { ...state, visibleGroups: new Set(['genes', 'assembly_variation'] as const) }).hitRegions
+    const visible = renderGenome(context, genome, viewport, { ...state, visibleGroups: new Set(['cds', 'assembly_variation'] as const) }).hitRegions
     expect(hidden.map((region) => region.featureId)).toContain(7)
     expect(hidden.map((region) => region.featureId)).not.toContain(1)
     expect(visible.map((region) => region.featureId)).toContain(1)
@@ -235,9 +235,9 @@ describe('renderer geometry', () => {
   })
   it('builds dynamic rows only for visible groups while preserving all six frames', () => {
     const view = { start: 0, end: 1000, width: 100 }
-    const minimal = buildViewerLayout(view, new Set(['genes']), { features: genome.features })
-    const expanded = buildViewerLayout(view, new Set(['genes', 'rna', 'regional', 'assembly_variation']), { features: genome.features })
-    expect(minimal.trackRows.every((row) => row.group === 'genes')).toBe(true)
+    const minimal = buildViewerLayout(view, new Set(['cds']), { features: genome.features })
+    const expanded = buildViewerLayout(view, new Set(['cds', 'rna', 'regional', 'assembly_variation']), { features: genome.features })
+    expect(minimal.trackRows.every((row) => row.group === 'cds')).toBe(true)
     expect(expanded.trackRows.some((row) => row.group === 'regional')).toBe(true)
     expect(expanded.trackRows.some((row) => row.group === 'assembly_variation')).toBe(true)
     expect(expanded.height).toBeGreaterThan(minimal.height)
