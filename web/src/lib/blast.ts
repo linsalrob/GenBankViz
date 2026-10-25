@@ -4,7 +4,7 @@ export function proteinBlastpUrl(sequence: string): string {
     CMD: 'Put',
     PROGRAM: 'blastp',
     PAGE_TYPE: 'BlastSearch',
-    DATABASE: 'nr',
+    DATABASE: 'clustered_nr',
     QUERY: normalized,
   })
   return normalized ? `https://blast.ncbi.nlm.nih.gov/Blast.cgi?${params.toString()}` : 'https://blast.ncbi.nlm.nih.gov/Blast.cgi'
