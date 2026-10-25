@@ -2,12 +2,14 @@
   import { createEventDispatcher } from 'svelte'
   import type { FeatureDto, GeneticCodeMetadataDto } from '../lib/genomeTypes'
   import { classifyFeatureType, featureGroupDefinition } from '../lib/featureGroups'
+  import { proteinBlastpUrl } from '../lib/blast'
 
   export let feature: FeatureDto | null
   export let geneticCode: number
   export let supportedCodes: GeneticCodeMetadataDto[]
   const dispatch = createEventDispatcher<{ usecode: number }>()
   const coordinates = (item: FeatureDto) => `${(item.start + 1).toLocaleString()}..${item.end.toLocaleString()}`
+  $: blastpUrl = feature?.translation ? proteinBlastpUrl(feature.translation) : undefined
   $: declaredCodeText = feature?.qualifiers.find(
     (qualifier) => qualifier.key.toLowerCase() === 'transl_table',
   )?.value
@@ -60,6 +62,11 @@
     <h4>Constituent intervals</h4>
     <ol>{#each feature.parts as part}<li>{part.start + 1}..{part.end}{part.partialStart || part.partialEnd ? ' (partial)' : ''}</li>{/each}</ol>
     {#if feature.translation}<details><summary>Translation qualifier</summary><code>{feature.translation}</code></details>{/if}
+    {#if blastpUrl}
+      <p class="blastp-row">
+        <button type="button" class="blastp-button" on:click={() => window.open(blastpUrl, '_blank', 'noopener,noreferrer')}>BLASTP protein sequence</button>
+      </p>
+    {/if}
     <details><summary>All qualifiers</summary><dl class="qualifiers">{#each feature.qualifiers as qualifier}<dt>/{qualifier.key}</dt><dd>{qualifier.value ?? '(valueless)'}</dd>{/each}</dl></details>
     <details><summary>Technical coordinates</summary><code>[{feature.start}, {feature.end})</code></details>
   {:else}
@@ -75,6 +82,9 @@
   .qualifiers { display:grid; grid-template-columns:minmax(7rem,max-content) minmax(0,1fr); gap:.35rem .7rem }
   .declared-code { display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; margin:.5rem 0 1rem; padding:.65rem; border-left:4px solid #147d64; background:#e8f7f2 }
   .group { padding:.45rem .6rem; background:#edf2f6; border-radius:.3rem }
+  .blastp-row { margin:1rem 0 }
+  .blastp-button { appearance:none; border:none; border-radius:.375rem; background:#1d4ed8; color:#fff; padding:.5rem .75rem; font-weight:600; cursor:pointer }
+  .blastp-button:hover { background:#1e40af }
   .key-qualifiers { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap:.5rem }
   .key-qualifiers div { min-width:0; padding:.5rem; background:#fff; border:1px solid #d7e0e7; border-radius:.3rem }
   code { display:block; max-width:100%; white-space:pre-wrap; overflow-wrap:anywhere }
